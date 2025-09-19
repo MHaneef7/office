@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://localhost/task/office/assets/table.php?Search=&search_button= -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./M G F Project_files/font-awesome.min.css">
+    <style>
+            .image_logo img {
+                width: 180px;
+                height: 90px;
+                margin-top: -21px;
+            }
+            .nev_bar {
+                width: 100%;
+                background-color: #343a40;
+            }
+            .navbar .nav-link {
+                color: #fff !important; 
+            }
+            .navbar .navbar-brand {
+                color: #fff !important; 
+            }
+           
+           .circle_input img {
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                background-color: lightblue;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+            #fileInput {
+                display: none;
+            }
+            .icon_camera {
+                margin-left: -43px;
+                /* border: 1px solid black; */
+                width: 77px;
+                text-align: center;
+                margin: 10px;
+            }
+            .icon_camera i {
+                font-size: 40px;
+                color: wheat;
+                margin-left: -12px;
+            }
+            i:hover {
+            color:black;
+            }
+    </style>
+    <link href="./M G F Project_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title> M G F Project </title>
+</head>
+<body>
+            <div class="nev_bar">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                     <div class="image_logo">
+                        <img src="./M G F Project_files/logo.png">
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/task/office/assets/table.php?Search=&amp;search_button=#">Home</a>
+                        </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/task/office/assets/table.php?Search=&amp;search_button=#">Object</a>
+                        </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/task/office/assets/table.php?Search=&amp;search_button=#">Registration From</a>
+                        </li>
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/task/office/assets/login.html">login</a>
+                        </li>
+                    </ul>
+                    <div class="icon_camera" id="start-scan">
+                        <i id="icon" class="fa fa-qrcode"></i>    
+                    </div>
+                    <div id="resultcontainer">
+                        <div id="scanner" width="600px" height="600px" style="position: relative; padding: 0px; border: 1px solid silver;"><div style="text-align: left; margin: 0px;"><div style="position: absolute; top: 10px; right: 10px; z-index: 2; display: none; padding: 5pt; border: 1px solid rgb(23, 23, 23); font-size: 10pt; background: rgba(0, 0, 0, 0.69); border-radius: 5px; text-align: center; font-weight: 400; color: white;">Powered by <a href="https://scanapp.org/" target="new" style="color: white;">ScanApp</a><br><br><a href="https://github.com/mebjas/html5-qrcode/issues" target="new" style="color: white;">Report issues</a></div><img alt="Info icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NjAgNDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0NjAgNDYwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBkPSJNMjMwIDBDMTAyLjk3NSAwIDAgMTAyLjk3NSAwIDIzMHMxMDIuOTc1IDIzMCAyMzAgMjMwIDIzMC0xMDIuOTc0IDIzMC0yMzBTMzU3LjAyNSAwIDIzMCAwem0zOC4zMzMgMzc3LjM2YzAgOC42NzYtNy4wMzQgMTUuNzEtMTUuNzEgMTUuNzFoLTQzLjEwMWMtOC42NzYgMC0xNS43MS03LjAzNC0xNS43MS0xNS43MVYyMDIuNDc3YzAtOC42NzYgNy4wMzMtMTUuNzEgMTUuNzEtMTUuNzFoNDMuMTAxYzguNjc2IDAgMTUuNzEgNy4wMzMgMTUuNzEgMTUuNzFWMzc3LjM2ek0yMzAgMTU3Yy0yMS41MzkgMC0zOS0xNy40NjEtMzktMzlzMTcuNDYxLTM5IDM5LTM5IDM5IDE3LjQ2MSAzOSAzOS0xNy40NjEgMzktMzkgMzl6Ii8+PC9zdmc+" style="position: absolute; top: 4px; right: 4px; opacity: 0.6; cursor: pointer; z-index: 2; width: 16px; height: 16px;"><div id="scanner__header_message" style="display: none; text-align: center; font-size: 14px; padding: 2px 10px; margin: 4px; border-top: 1px solid rgb(246, 246, 246); background: rgba(0, 0, 0, 0); color: rgb(17, 17, 17);">Requesting camera permissions...</div></div><div id="scanner__scan_region" style="width: 100%; min-height: 100px; text-align: center; position: relative;"><br><img width="64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNzEuNjQzIDM3MS42NDMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDM3MS42NDMgMzcxLjY0MyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZD0iTTEwNS4wODQgMzguMjcxaDE2My43Njh2MjBIMTA1LjA4NHoiLz48cGF0aCBkPSJNMzExLjU5NiAxOTAuMTg5Yy03LjQ0MS05LjM0Ny0xOC40MDMtMTYuMjA2LTMyLjc0My0yMC41MjJWMzBjMC0xNi41NDItMTMuNDU4LTMwLTMwLTMwSDEyNS4wODRjLTE2LjU0MiAwLTMwIDEzLjQ1OC0zMCAzMHYxMjAuMTQzaC04LjI5NmMtMTYuNTQyIDAtMzAgMTMuNDU4LTMwIDMwdjEuMzMzYTI5LjgwNCAyOS44MDQgMCAwIDAgNC42MDMgMTUuOTM5Yy03LjM0IDUuNDc0LTEyLjEwMyAxNC4yMjEtMTIuMTAzIDI0LjA2MXYxLjMzM2MwIDkuODQgNC43NjMgMTguNTg3IDEyLjEwMyAyNC4wNjJhMjkuODEgMjkuODEgMCAwIDAtNC42MDMgMTUuOTM4djEuMzMzYzAgMTYuNTQyIDEzLjQ1OCAzMCAzMCAzMGg4LjMyNGMuNDI3IDExLjYzMSA3LjUwMyAyMS41ODcgMTcuNTM0IDI2LjE3Ny45MzEgMTAuNTAzIDQuMDg0IDMwLjE4NyAxNC43NjggNDUuNTM3YTkuOTg4IDkuOTg4IDAgMCAwIDguMjE2IDQuMjg4IDkuOTU4IDkuOTU4IDAgMCAwIDUuNzA0LTEuNzkzYzQuNTMzLTMuMTU1IDUuNjUtOS4zODggMi40OTUtMTMuOTIxLTYuNzk4LTkuNzY3LTkuNjAyLTIyLjYwOC0xMC43Ni0zMS40aDgyLjY4NWMuMjcyLjQxNC41NDUuODE4LjgxNSAxLjIxIDMuMTQyIDQuNTQxIDkuMzcyIDUuNjc5IDEzLjkxMyAyLjUzNCA0LjU0Mi0zLjE0MiA1LjY3Ny05LjM3MSAyLjUzNS0xMy45MTMtMTEuOTE5LTE3LjIyOS04Ljc4Ny0zNS44ODQgOS41ODEtNTcuMDEyIDMuMDY3LTIuNjUyIDEyLjMwNy0xMS43MzIgMTEuMjE3LTI0LjAzMy0uODI4LTkuMzQzLTcuMTA5LTE3LjE5NC0xOC42NjktMjMuMzM3YTkuODU3IDkuODU3IDAgMCAwLTEuMDYxLS40ODZjLS40NjYtLjE4Mi0xMS40MDMtNC41NzktOS43NDEtMTUuNzA2IDEuMDA3LTYuNzM3IDE0Ljc2OC04LjI3MyAyMy43NjYtNy42NjYgMjMuMTU2IDEuNTY5IDM5LjY5OCA3LjgwMyA0Ny44MzYgMTguMDI2IDUuNzUyIDcuMjI1IDcuNjA3IDE2LjYyMyA1LjY3MyAyOC43MzMtLjQxMyAyLjU4NS0uODI0IDUuMjQxLTEuMjQ1IDcuOTU5LTUuNzU2IDM3LjE5NC0xMi45MTkgODMuNDgzLTQ5Ljg3IDExNC42NjEtNC4yMjEgMy41NjEtNC43NTYgOS44Ny0xLjE5NCAxNC4wOTJhOS45OCA5Ljk4IDAgMCAwIDcuNjQ4IDMuNTUxIDkuOTU1IDkuOTU1IDAgMCAwIDYuNDQ0LTIuMzU4YzQyLjY3Mi0zNi4wMDUgNTAuODAyLTg4LjUzMyA1Ni43MzctMTI2Ljg4OC40MTUtMi42ODQuODIxLTUuMzA5IDEuMjI5LTcuODYzIDIuODM0LTE3LjcyMS0uNDU1LTMyLjY0MS05Ljc3Mi00NC4zNDV6bS0yMzIuMzA4IDQyLjYyYy01LjUxNCAwLTEwLTQuNDg2LTEwLTEwdi0xLjMzM2MwLTUuNTE0IDQuNDg2LTEwIDEwLTEwaDE1djIxLjMzM2gtMTV6bS0yLjUtNTIuNjY2YzAtNS41MTQgNC40ODYtMTAgMTAtMTBoNy41djIxLjMzM2gtNy41Yy01LjUxNCAwLTEwLTQuNDg2LTEwLTEwdi0xLjMzM3ptMTcuNSA5My45OTloLTcuNWMtNS41MTQgMC0xMC00LjQ4Ni0xMC0xMHYtMS4zMzNjMC01LjUxNCA0LjQ4Ni0xMCAxMC0xMGg3LjV2MjEuMzMzem0zMC43OTYgMjguODg3Yy01LjUxNCAwLTEwLTQuNDg2LTEwLTEwdi04LjI3MWg5MS40NTdjLS44NTEgNi42NjgtLjQzNyAxMi43ODcuNzMxIDE4LjI3MWgtODIuMTg4em03OS40ODItMTEzLjY5OGMtMy4xMjQgMjAuOTA2IDEyLjQyNyAzMy4xODQgMjEuNjI1IDM3LjA0IDUuNDQxIDIuOTY4IDcuNTUxIDUuNjQ3IDcuNzAxIDcuMTg4LjIxIDIuMTUtMi41NTMgNS42ODQtNC40NzcgNy4yNTEtLjQ4Mi4zNzgtLjkyOS44LTEuMzM1IDEuMjYxLTYuOTg3IDcuOTM2LTExLjk4MiAxNS41Mi0xNS40MzIgMjIuNjg4aC05Ny41NjRWMzBjMC01LjUxNCA0LjQ4Ni0xMCAxMC0xMGgxMjMuNzY5YzUuNTE0IDAgMTAgNC40ODYgMTAgMTB2MTM1LjU3OWMtMy4wMzItLjM4MS02LjE1LS42OTQtOS4zODktLjkxNC0yNS4xNTktMS42OTQtNDIuMzcgNy43NDgtNDQuODk4IDI0LjY2NnoiLz48cGF0aCBkPSJNMTc5LjEyOSA4My4xNjdoLTI0LjA2YTUgNSAwIDAgMC01IDV2MjQuMDYxYTUgNSAwIDAgMCA1IDVoMjQuMDZhNSA1IDAgMCAwIDUtNVY4OC4xNjdhNSA1IDAgMCAwLTUtNXpNMTcyLjYyOSAxNDIuODZoLTEyLjU2VjEzMC44YTUgNSAwIDEgMC0xMCAwdjE3LjA2MWE1IDUgMCAwIDAgNSA1aDE3LjU2YTUgNSAwIDEgMCAwLTEwLjAwMXpNMjE2LjU2OCA4My4xNjdoLTI0LjA2YTUgNSAwIDAgMC01IDV2MjQuMDYxYTUgNSAwIDAgMCA1IDVoMjQuMDZhNSA1IDAgMCAwIDUtNVY4OC4xNjdhNSA1IDAgMCAwLTUtNXptLTUgMjQuMDYxaC0xNC4wNlY5My4xNjdoMTQuMDZ2MTQuMDYxek0yMTEuNjY5IDEyNS45MzZIMTk3LjQxYTUgNSAwIDAgMC01IDV2MTQuMjU3YTUgNSAwIDAgMCA1IDVoMTQuMjU5YTUgNSAwIDAgMCA1LTV2LTE0LjI1N2E1IDUgMCAwIDAtNS01eiIvPjwvc3ZnPg==" alt="Camera based scan" style="opacity: 0.8;"></div><div id="scanner__dashboard" style="width: 100%;"><div id="scanner__dashboard_section" style="width: 100%; padding: 10px 0px; text-align: left;"><div><div id="scanner__dashboard_section_csr" style="display: block; text-align: center;"><div style="display: none; padding: 5px 10px; text-align: center;"><input id="html5-qrcode-input-range-zoom" class="html5-qrcode-element" type="range" min="1" max="5" step="0.1" style="display: inline-block; width: 50%; height: 5px; background: rgb(211, 211, 211); outline: none; opacity: 0.7;"><span style="margin-right: 10px;">1x zoom</span></div><span style="margin-right: 10px; display: none;"><select id="html5-qrcode-select-camera" class="html5-qrcode-element"><option value="9efa0ae2f75febff1ea7aec6c2a0d09b611160ddf4123191f8d6450083bbc7f6">TOSHIBA Web Camera - FHD (04f2:b537)</option></select></span><span><button id="html5-qrcode-button-camera-start" class="html5-qrcode-element" type="button" style="opacity: 1; display: inline-block;">Start Scanning</button><button id="html5-qrcode-button-camera-stop" class="html5-qrcode-element" type="button" style="display: none;" disabled="">Stop Scanning</button></span></div><div style="text-align: center; margin: auto auto 10px; width: 80%; max-width: 600px; border: 6px dashed rgb(235, 235, 235); padding: 10px; display: none;"><label for="html5-qrcode-private-filescan-input" style="display: inline-block;"><button id="html5-qrcode-button-file-selection" class="html5-qrcode-element" type="button">Choose Image - No image choosen</button><input id="html5-qrcode-private-filescan-input" class="html5-qrcode-element" type="file" accept="image/*" style="display: none;"></label><div style="font-weight: 400;">Or drop an image to scan</div></div></div><div style="text-align: center;"><span id="html5-qrcode-anchor-scan-type-change" class="html5-qrcode-element" style="text-decoration: underline; cursor: pointer; display: inline-block;">Scan an Image File</span></div></div></div></div>
+                    <h1 id="result"></h1>
+                   <div class="circle_input" onclick="document.getElementById(&#39;fileInput&#39;).click()">
+                        <img src="./M G F Project_files/images.jpeg">
+                    </div>
+                    <div id="reader"></div>
+                    <span id="result"></span>
+                    <div id="fileNameDisplay"></div>               
+                    <input type="file" id="fileInput" onchange="displayFileName()">
+                <script src="./M G F Project_files/html5-qrcode"></script>
+                <script>      
+                    let scanner;
+                    document.getElementById('start-scan').addEventListener('click', () => {
+                     let resultcontainer = document.getElementById("resultcontainer");
+                    let result = document.getElementById("result");
+                    let onSuccess = function (text , result){
+                        resultcontainer.innerHTML = text;
+                        resultcontainer.classList.remove("d-none"); 
+                        html5QrcodeScanner.clear();
+                        console.log(text , result);
+                    }
+                    let onError = function (){
+                        console.log(error);
+                    }
+                    let html5QrcodeScanner = new Html5QrcodeScanner(
+                        "scanner",
+                        { fps: 10000, qrbox: {width : 250, height : 250 }},
+                        true
+                    );
+                    html5QrcodeScanner.render( onSuccess , onError );
+                    });
+                
+                function displayFileName() {
+                    const fileInput = document.getElementById('fileInput');
+                    const fileNameDisplay = document.getElementById('fileNameDisplay');
+                    if (fileInput.files.length > 0) {
+                    fileNameDisplay.textContent = "Selected file: " + fileInput.files[0].name;
+                    } else {
+                    fileNameDisplay.textContent = "";
+                    }
+                }
+                </script>
+                        </div>
+                    </div>
+                </div>
+            </nav></div>
+        
+    
+
+
+
+<style>
+    .container{
+        width: 1300px;
+
+    }
+  
+    .box {
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .select_item {
+        width: 180px;
+        height: 35px;
+        border-radius: 11px;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        padding-left: 9px;
+        color: #845b5b;
+    }
+   .select_item option{
+        border: 1px solid #ccc;
+
+    }
+    .input_search{
+        margin-top: -23px;
+    }
+    .input_search input {
+        width: 250px;
+        height: 35px;
+        border-radius: 13px;
+        /* background-color: #6d6d9047; */
+        border: none;
+        padding-left: 18px;
+        padding-right: 19px;
+        border: 1px solid #ccc;
+    }
+
+    .box_button  button{        
+        background-color:  #343a40;
+        padding: 10px 15px 10px 15px;
+        color: white;
+        border: none;
+        border-radius: 25px;
+    }
+    tr:hover{
+        background-color:   #a9aeb6d6;
+    }
+  
+    table tr{
+        margin-top: 12px;
+    }
+    tr{
+        padding-left: 12px;
+    }
+.search_table {
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 6px #ccc;
+}
+
+
+</style>
+    <div id="box_table">
+        <div class="container">
+            <div class="main_table">
+                   <div class="search_table">
+                       <form method="GET">
+                            <div class="box">
+                                <div class="input_search"><label><b>Search</b></label><br>
+                                    <input type="search" placeholder="search" name="Search">
+                                </div>
+                                <div> <b>Categary</b> <br>
+                                    <select class="select_item">
+                                        <option value="All">All</option>
+                                        <option value="Name">Name</option>
+                                        <option value="Email">Email</option>
+                                        <option value="Number">Number</option>
+                                    </select>
+                                    <br><br>
+                                </div>
+                                <div> <b>Status</b> <br>
+                                    <select class="select_item">
+                                        <option value="All">All</option>
+                                        <option value="Name">Name</option>
+                                        <option value="Email">Email</option>
+                                        <option value="Number">Number</option>
+                                    </select>
+                                    <br><br>
+                                </div>
+                                        <div class="box_button">
+                                            <button name="search_button">submit</button>
+                                            <button name="delete_all">Delete All</button>
+                                        </div>
+                            </div>
+                    </form></div>
+                </div>
+                <div class="search_table">
+                    <table class="table table-sm">
+                                    <tbody><tr>
+                                        <th><input type="checkbox"></th>
+                                        <th>Id</th>
+                                        <th>User Name</th>
+                                        <th>Emailr</th>
+                                        <th>Number</th>
+                                        <th>Password</th>
+                                        <th>Date Time</th>
+                                        <th>QR</th>
+                                        <th>Update/Delete</th>
+                                  
+                                    </tr>
+                                                                        <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>1</td>
+                                        <td>ww</td>
+                                        <td>web@gmail.com</td>
+                                        <td>44</td>
+                                        <td>44</td>
+                                        <td>2025-07-21 17:36:19</td>
+                                         <td><img src="./M G F Project_files/ww.png" width="80"> </td>
+                                 
+                                    <td>
+                                        
+                                                <div class="box_button">
+                                                <a href="http://localhost/task/office/assets/update.php?id=%2066">
+                                                    <button type="button">Update</button>
+                                                </a>
+                                                <a href="http://localhost/task/office/assets/delete.php?id=66">
+                                                        <button type="button" name="delete" value="">delete</button>
+                                                </a>
+                                        
+                                            </div>
+                                        </td>
+                                    </tr>
+                                                                            <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>2</td>
+                                        <td>ab</td>
+                                        <td>ab@gmail.com</td>
+                                        <td>546</td>
+                                        <td>546</td>
+                                        <td>2025-07-21 17:37:56</td>
+                                         <td><img src="./M G F Project_files/ab.png" width="80"> </td>
+                                 
+                                    <td>
+                                        <form method="GET">
+                                                <div class="box_button">
+                                                <a href="http://localhost/task/office/assets/update.php?id=%2067">
+                                                    <button type="button">Update</button>
+                                                </a>
+                                                <a href="http://localhost/task/office/assets/delete.php?id=67">
+                                                        <button type="button" name="delete" value="">delete</button>
+                                                </a>
+                                        
+                                            </div></form>
+                                        </td>
+                                    </tr>
+                                                                            <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>3</td>
+                                        <td>najaf</td>
+                                        <td>najaf@gmail.com</td>
+                                        <td>55</td>
+                                        <td>55</td>
+                                        <td>2025-07-21 17:38:49</td>
+                                         <td><img src="./M G F Project_files/n.png" width="80"> </td>
+                                 
+                                    <td>
+                                        <form method="GET">
+                                                <div class="box_button">
+                                                <a href="http://localhost/task/office/assets/update.php?id=%2068">
+                                                    <button type="button">Update</button>
+                                                </a>
+                                                <a href="http://localhost/task/office/assets/delete.php?id=68">
+                                                        <button type="button" name="delete" value="">delete</button>
+                                                </a>
+                                        
+                                            </div></form>
+                                        </td>
+                                    </tr>
+                                                                            <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>4</td>
+                                        <td>najamulrahman</td>
+                                        <td>najamulrahman@gmail.com</td>
+                                        <td>66</td>
+                                        <td>66</td>
+                                        <td>2025-07-22 09:00:23</td>
+                                         <td><img src="./M G F Project_files/najamulrahman.png" width="80"> </td>
+                                 
+                                    <td>
+                                        <form method="GET">
+                                                <div class="box_button">
+                                                <a href="http://localhost/task/office/assets/update.php?id=%2069">
+                                                    <button type="button">Update</button>
+                                                </a>
+                                                <a href="http://localhost/task/office/assets/delete.php?id=69">
+                                                        <button type="button" name="delete" value="">delete</button>
+                                                </a>
+                                        
+                                            </div></form>
+                                        </td>
+                                    </tr>
+                                                                            <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>5</td>
+                                        <td>farhan</td>
+                                        <td>farhan@gmail.com</td>
+                                        <td>55</td>
+                                        <td>55</td>
+                                        <td>2025-07-22 09:16:07</td>
+                                         <td><img src="./M G F Project_files/farhan.png" width="80"> </td>
+                                 
+                                    <td>
+                                        <form method="GET">
+                                                <div class="box_button">
+                                                <a href="http://localhost/task/office/assets/update.php?id=%2070">
+                                                    <button type="button">Update</button>
+                                                </a>
+                                                <a href="http://localhost/task/office/assets/delete.php?id=70">
+                                                        <button type="button" name="delete" value="">delete</button>
+                                                </a>
+                                        
+                                            </div></form>
+                                        </td>
+                                    </tr>
+                                                                            <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>6</td>
+                                        <td>faraz</td>
+                                        <td>faisal@gmail.com</td>
+                                        <td>54</td>
+                                        <td>45</td>
+                                        <td>2025-07-22 09:17:15</td>
+                                         <td><img src="./M G F Project_files/faraz.png" width="80"> </td>
+                                 
+                                    <td>
+                                        <form method="GET">
+                                                <div class="box_button">
+                                                <a href="http://localhost/task/office/assets/update.php?id=%2071">
+                                                    <button type="button">Update</button>
+                                                </a>
+                                                <a href="http://localhost/task/office/assets/delete.php?id=71">
+                                                        <button type="button" name="delete" value="">delete</button>
+                                                </a>
+                                        
+                                            </div></form>
+                                        </td>
+                                    </tr>
+                                                                            <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>7</td>
+                                        <td>farhan</td>
+                                        <td>farhan@gamilcom</td>
+                                        <td>666</td>
+                                        <td>55</td>
+                                        <td>2025-07-22 09:20:46</td>
+                                         <td><img src="./M G F Project_files/farhan.png" width="80"> </td>
+                                 
+                                    <td>
+                                        <form method="GET">
+                                                <div class="box_button">
+                                                <a href="http://localhost/task/office/assets/update.php?id=%2072">
+                                                    <button type="button">Update</button>
+                                                </a>
+                                                <a href="http://localhost/task/office/assets/delete.php?id=72">
+                                                        <button type="button" name="delete" value="">delete</button>
+                                                </a>
+                                        
+                                            </div></form>
+                                        </td>
+                                    </tr>
+                                                                            <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>8</td>
+                                        <td>farzana</td>
+                                        <td>farzana@gmail.com</td>
+                                        <td>555</td>
+                                        <td>555</td>
+                                        <td>2025-07-22 09:22:22</td>
+                                         <td><img src="./M G F Project_files/farzana.png" width="80"> </td>
+                                 
+                                    <td>
+                                        <form method="GET">
+                                                <div class="box_button">
+                                                <a href="http://localhost/task/office/assets/update.php?id=%2073">
+                                                    <button type="button">Update</button>
+                                                </a>
+                                                <a href="http://localhost/task/office/assets/delete.php?id=73">
+                                                        <button type="button" name="delete" value="">delete</button>
+                                                </a>
+                                        
+                                            </div></form>
+                                        </td>
+                                    </tr>
+                                                                            <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>9</td>
+                                        <td>amam</td>
+                                        <td>amam@gmail.com</td>
+                                        <td>8</td>
+                                        <td>8</td>
+                                        <td>2025-07-22 09:56:58</td>
+                                         <td><img src="./M G F Project_files/amam.png" width="80"> </td>
+                                 
+                                    <td>
+                                        <form method="GET">
+                                                <div class="box_button">
+                                                <a href="http://localhost/task/office/assets/update.php?id=%2074">
+                                                    <button type="button">Update</button>
+                                                </a>
+                                                <a href="http://localhost/task/office/assets/delete.php?id=74">
+                                                        <button type="button" name="delete" value="">delete</button>
+                                                </a>
+                                        
+                                            </div></form>
+                                        </td>
+                                    </tr>
+                                                            
+                    </tbody></table>
+                
+            </div>
+        </div>
+    </div>
+
+
+<div class="card text-center" style=" margin-top:92px;">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+  </div>
+
+</div>
+
+<script src="./M G F Project_files/popper.min.js.download" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="./M G F Project_files/bootstrap.min.js.download" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body></html>

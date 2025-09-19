@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MGFF QR Code Login</title>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f2f2f2;
+    }
+    .main_box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 500px;
+    }
+    #scanner {
+      width: 100%;
+      margin: 15px 0;
+    }
+    button {
+      background-color: #343a40;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    input[type="file"] {
+      margin-top: 10px;
+    }
+    #result {
+      margin-top: 10px;
+      color: green;
+    }
+    #error {
+      margin-top: 5px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div class="main_box">
+  <h2>QR Code Login</h2>
+  <div id="scanner"></div>
+  <button id="start-camera">Start Camera Scan</button><br>
+  <input type="file" id="qr-input-file" accept="image/*">
+  <p id="result"></p>
+  <p id="error"></p>
+</div>
+
+<script>
+  const resultEl = document.getElementById("result");
+  const errorEl = document.getElementById("error");
+  const startCameraBtn = document.getElementById("start-camera");
+  const fileInput = document.getElementById("qr-input-file");
+  let html5QrCode;
+
+  function handleDecodedText(decodedText){
+    resultEl.innerText = "Scanned: " + decodedText;
+    const parts = decodedText.split("|");
+    if (parts.length === 4) {
+      const username = parts[0].trim();
+      const email = parts[1].trim();
+      const userid = parts[2].trim();
+      const password = parts[3].trim();
+
+      const formData = new FormData();
+      formData.append("username", username);
+      formData.append("useremail", email);
+      formData.append("userid", userid);
+      formData.append("userpassword", password);
+      formData.append("actionType", "qrLogin"); 
+
+      fetch("scanner_logic.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.text())
+      .then(data => {
+        if (data.trim() === "success") {
+          if(html5QrCode) html5QrCode.stop();
+          alert("Login Success !");
+          window.location.href = "attendance_sheet.php"; 
+        } else {
+          errorEl.innerText = data;
+        }
+      })
+      .catch(err => {
+        errorEl.innerText = "Fetch error: " + err;
+      });
+    } else {
+      errorEl.innerText = "QR format must be: username|email|userid|password";
+    }
+  }
+
+  startCameraBtn.addEventListener("click", () => {
+    html5QrCode = new Html5Qrcode("scanner");
+    html5QrCode.start(
+      { facingMode: "environment" },
+      { fps: 10, qrbox: 350 },
+      decodedText => handleDecodedText(decodedText),
+      errorMessage => {} // silent
+    ).catch(err => {
+      errorEl.innerText = "Camera error: " + err;
+    });
+  });
+
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const html5QrCodeImage = new Html5Qrcode("scanner");
+    html5QrCodeImage.scanFile(file, true)
+      .then(decodedText => handleDecodedText(decodedText))
+      .catch(err => {
+        errorEl.innerText = "Image scan error: " + err;
+      });
+  });
+</script>
+
+</body>
+</html>

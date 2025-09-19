@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code Attendance</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #343a40;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .scanner_box {
+            border: none;
+            background: white;
+            border-radius: 15px;
+            color: black;
+            text-align: center;
+            width: 1100px;
+            height: 88vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 30px;
+            padding: 20px;
+        }
+        .camera_left_box {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .Camera_scanner {
+            width: 50%;
+            height: 77%;
+            border: none;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 56px;
+            position: relative;
+        }
+        .scanner_box h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color:#343a40;
+        }
+        .Camera_btn button {
+            background-color: #343a40;
+            color: white;
+            border: none;
+            width: 230px;
+            height: 55px;
+            border-radius: 14px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 15px 0;
+        }
+        .Select_Option select {
+            width: 274px;
+            height: 50px;
+            font-size: 22px;
+        }
+        .camera_right_box {
+            border: 3px dashed #343a40;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            border-radius: 20px;
+            margin: 15px 0;
+        }
+        .input_file_get{
+             border: 3px dashed #343a40;
+             border-radius: 12px;
+            width: 225px;
+            height: 50px;
+        }
+        .input_file_get input {
+           margin: 10px ;
+            font-size: 16px;
+        }
+        .submit_btn {
+            margin-top: 20px;
+        }
+        .submit_btn button {
+            background-color: #343a40;
+            color: white;
+            border: none;
+            width: 285px;
+            height: 50px;
+            border-radius: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #scanner {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            display: none; /* Pehle hidden rahega */
+        }
+        #canvas {
+            display: block;
+        }
+    </style> 
+</head>
+<body>
+    <div class="scanner_box">
+        <div class="camera_left_box">
+            <h2>Scan QR Code Attendance</h2>
+            <div class="Select_Option">
+                <select id="actionType"> 
+                    <option value=""> -- Cheack In -- </option>
+                    <option value="signin">Sign In</option>
+                    <option value="signout">Sign Out</option>
+                </select>
+            </div>
+
+            <div class="camera_right_box">
+                <div class="Camera_btn">
+                     <button id="start-camera">Start Camera Scan</button>
+                </div>
+                <div class="input_file_get">
+                    <input type="file" id="qr-input-file" accept="image/*">
+                </div>
+            </div>
+            <p id="result"></p>
+
+            <div class="submit_btn">
+                <button id="submit-btn" type="button">Enter</button>    
+            </div>
+            <p id="response"></p>
+        </div>
+        <div class="Camera_scanner">
+            <canvas id="canvas"  width="400" height="400"></canvas>
+            <div id="scanner"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script>
+    const resultEl = document.getElementById("result");
+    const responseEl = document.getElementById("response");
+    const startCameraBtn = document.getElementById("start-camera");
+    const fileInput = document.getElementById("qr-input-file");
+    const actionType = document.getElementById("actionType");
+    const canvas = document.getElementById("canvas");
+    const scannerDiv = document.getElementById("scanner");
+    const submitBtn = document.getElementById("submit-btn");
+    let html5QrCode;
+    let lastDecodedText = "";
+
+    function handleDecodedText(decodedText) {
+        lastDecodedText = decodedText; 
+        resultEl.innerText = decodedText;
+    }
+    function sendToServer(decodedText) {
+        const parts = decodedText.split("|");
+        if (parts.length === 4) {
+            const username = parts[0].trim();
+            const email = parts[1].trim();
+            const number = parts[2].trim();
+            const password = parts[3].trim();
+
+            if (actionType.value === "") {
+                alert("Please select Sign In or Sign Out first!");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("username", username);
+            formData.append("useremail", email);
+            formData.append("number", number);
+            formData.append("userpassword", password);
+            formData.append("actionType", actionType.value);
+            fetch("sign_out1.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(data => {
+                alert(data);
+                if (data.includes("Success")) {
+                    if(html5QrCode) html5QrCode.stop();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 600);
+                } else {
+                    responseEl.innerText = data;
+                }
+            })
+            .catch(err => {
+                responseEl.innerText = "Fetch error: " + err;
+            });
+        } else {
+            responseEl.innerText = "QR Format should be: username|email|number|password";
+        }
+    }
+    submitBtn.addEventListener("click", () => {
+        if (lastDecodedText !== "") {
+            sendToServer(lastDecodedText);
+        } else {
+            alert("Please scan or select a QR code first!");
+        }
+    });
+    startCameraBtn.addEventListener("click", () => {
+
+        canvas.style.display = "none";
+        scannerDiv.style.display = "block";
+
+        html5QrCode = new Html5Qrcode("scanner");
+        html5QrCode.start(
+            { facingMode: "environment" },
+            { 
+              fps: 10, 
+              qrbox: { width: 400, height: 300 },  
+              aspectRatio: 1.3333  
+            },
+            decodedText => handleDecodedText(decodedText),
+            errorMessage => {}
+        ).catch(err => {
+            responseEl.innerText = "Camera error: " + err;
+        });
+    });
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+
+      const html5QrCodeImage = new Html5Qrcode("scanner");
+      html5QrCodeImage.scanFile(file, true)
+      .then(decodedText => handleDecodedText(decodedText))
+      .catch(err => {
+        responseEl.innerText = "Image scan error: " + err;
+      });
+    });
+
+    const ctx = canvas.getContext("2d");
+    let radius = canvas.height / 2;
+    ctx.translate(radius, radius);
+    radius = radius * 0.90
+    setInterval(drawClock, 1000);
+
+    function drawClock() {
+      drawFace(ctx, radius);
+      drawNumbers(ctx, radius);
+      drawTime(ctx, radius);
+    }
+
+    function drawFace(ctx, radius) {
+      const grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+      grad.addColorStop(0, '#333');
+      grad.addColorStop(0.5, 'white');
+      grad.addColorStop(1, '#333');
+      ctx.beginPath();
+      ctx.arc(0, 0, radius, 0, 2*Math.PI);
+      ctx.fillStyle = 'white';
+      ctx.fill();
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = radius*0.1;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+      ctx.fillStyle = '#333';
+      ctx.fill();
+    }
+
+    function drawNumbers(ctx, radius) {
+      ctx.font = radius*0.15 + "px arial";
+      ctx.textBaseline="middle";
+      ctx.textAlign="center";
+      for(let num = 1; num < 13; num++){
+        let ang = num * Math.PI / 6;
+        ctx.rotate(ang);
+        ctx.translate(0, -radius*0.85);
+        ctx.rotate(-ang);
+        ctx.fillText(num.toString(), 0, 0);
+        ctx.rotate(ang);
+        ctx.translate(0, radius*0.85);
+        ctx.rotate(-ang);
+      }
+    }
+
+    function drawTime(ctx, radius){
+        const now = new Date();
+        let hour = now.getHours();
+        let minute = now.getMinutes();
+        let second = now.getSeconds();
+        hour=hour%12;
+        hour=(hour*Math.PI/6)+
+        (minute*Math.PI/(6*60))+
+        (second*Math.PI/(360*60));
+        drawHand(ctx, hour, radius*0.5, radius*0.07);
+        minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+        drawHand(ctx, minute, radius*0.8, radius*0.07);
+        second=(second*Math.PI/30);
+        drawHand(ctx, second, radius*0.9, radius*0.02);
+    }
+
+    function drawHand(ctx, pos, length, width) {
+        ctx.beginPath();
+        ctx.lineWidth = width;
+        ctx.lineCap = "round";
+        ctx.moveTo(0,0);
+        ctx.rotate(pos);
+        ctx.lineTo(0, -length);
+        ctx.stroke();
+        ctx.rotate(-pos);
+    }
+    </script>
+</body>
+</html>
